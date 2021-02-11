@@ -1,0 +1,301 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Proyecto Menus",
+      "provenance": [],
+      "collapsed_sections": [],
+      "authorship_tag": "ABX9TyNYmq44mNjPHIwTQWrMt7rq",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/cate1285/Catesecondtime/blob/main/Proyecto_Menus.0.02ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "LbY2TFVnsaLR",
+        "outputId": "df725018-8d80-43cd-e7c7-0ea23246ccc1"
+      },
+      "source": [
+        "import pandas as pd \r\n",
+        "from random import sample\r\n",
+        "import random\r\n",
+        "\r\n",
+        "\r\n",
+        "try:\r\n",
+        "  platos=pd.read_csv(\"Platosaludable.csv\",sep=(\",\"),encoding=(\"utf-8\"))\r\n",
+        "except FileNotFoundError:\r\n",
+        "  print(\"El documento no existe\")\r\n",
+        "else:\r\n",
+        "  print(platos)"
+      ],
+      "execution_count": 691,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "  Carbohidratos      Proteinas  Vegetales\n",
+            "0         Arroz         Salmon    brocoli\n",
+            "1         Pasta        pechuga   coliflor\n",
+            "2      Frijoles   carne de res    lechuga\n",
+            "3      Lentejas       costilla     tomate\n",
+            "4     Garbanzos           atun     pepino\n",
+            "5          Maiz  lomo de cerdo  zanahoria\n",
+            "6         Papas         pernil   aguacate\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "zg0AIWNtAesu",
+        "outputId": "d5d3c60e-422f-4433-c4ca-b729dd04b9ba"
+      },
+      "source": [
+        "print(\"Hola, mi nombre es Sam y te ayuddare a crear un rico y saludable plato \")"
+      ],
+      "execution_count": 692,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "Hola, mi nombre es Sam y te ayuddare a crear un rico y saludable plato \n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "GvNsmgJCv_N_",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "c786bae4-407f-4a32-81e4-b92b6fb2a6ba"
+      },
+      "source": [
+        "list_of_names = platos['Carbohidratos'].to_list()\r\n",
+        "list_of = platos['Proteinas'].to_list()\r\n",
+        "list_ofnames = platos['Vegetales'].to_list()\r\n",
+        "print(list_of_names)\r\n",
+        "print(list_of)\r\n",
+        "print(list_ofnames)\r\n",
+        "todos_ingredientes=(list_of_names + list_of +list_ofnames)"
+      ],
+      "execution_count": 693,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "['Arroz', 'Pasta', 'Frijoles', 'Lentejas', 'Garbanzos', 'Maiz', 'Papas']\n",
+            "['Salmon', 'pechuga', 'carne de res', 'costilla', 'atun', 'lomo de cerdo', 'pernil']\n",
+            "['brocoli', 'coliflor', 'lechuga', 'tomate', 'pepino', 'zanahoria', 'aguacate']\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "zrp040wsNw_9",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "e36f4032-5e06-4d45-855b-fb98e3f28003"
+      },
+      "source": [
+        "print(str(todos_ingredientes))"
+      ],
+      "execution_count": 694,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "['Arroz', 'Pasta', 'Frijoles', 'Lentejas', 'Garbanzos', 'Maiz', 'Papas', 'Salmon', 'pechuga', 'carne de res', 'costilla', 'atun', 'lomo de cerdo', 'pernil', 'brocoli', 'coliflor', 'lechuga', 'tomate', 'pepino', 'zanahoria', 'aguacate']\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "qACz_QvUzxEz",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "36fab01c-273e-4211-d060-1c3973c47687"
+      },
+      "source": [
+        "counts=0\r\n",
+        "inx=len(list_of_names)\r\n",
+        "week=[\"Lunes\", \"Martes\", \"Miercoles\", \"Jueves\", \"Viernes\", \"Sabado\",\"Domingo\"]\r\n",
+        "while counts <inx:\r\n",
+        "  carbohidratos_1= random.choices(list_of_names,k=1)\r\n",
+        "  proteinas_1=random.choices(list_of,k=1)\r\n",
+        "  vegetales_1=random.choices(list_ofnames,k=1)\r\n",
+        "  lunes=(carbohidratos_1+proteinas_1+vegetales_1)\r\n",
+        "  print(\"Para el dia \"+ week[counts]+\" El plato perfecto es \"+ str(lunes))\r\n",
+        "  for x in lunes:\r\n",
+        "    if x in  list_of_names:\r\n",
+        "      list_of_names.remove(x)\r\n",
+        "      for x in lunes:\r\n",
+        "        if x in list_of:\r\n",
+        "          list_of.remove(x)\r\n",
+        "      for x in lunes:\r\n",
+        "        if x in list_ofnames:\r\n",
+        "          list_ofnames.remove(x)\r\n",
+        "      counts=counts+1\r\n",
+        "      print(\"Ingredientes restantes\",\"\\n\",list_of_names,\"\\n\",list_of,\"\\n\",list_ofnames)\r\n",
+        "      break\r\n",
+        "print(list_of_names)\r\n",
+        "\r\n",
+        "if not list_of_names:\r\n",
+        "  \r\n",
+        "  while agregar !=\"2\":\r\n",
+        "    agregar=input(\"Quieres Ingresar nuevos ingredientes? \\n 1-Si \\n 2-No\")\r\n",
+        "    ingrediente=input(\"Que tipo de ingrediente vas a ingresar? \\n 1-Carbohidratos \\n 2-proteina \\n 3-vegetales\")\r\n",
+        "    if ingrediente==\"1\":\r\n",
+        "      nuevo_ingrediente=input(\"ingresa el nuevo ingrediente\")\r\n",
+        "      list_of_names.append(nuevo_ingrediente)\r\n",
+        "      print(list_of_names)\r\n",
+        "    if ingrediente==\"2\":\r\n",
+        "      nuevo_ingrediente=input(\"ingresa el nuevo ingrediente\")\r\n",
+        "      list_of.append(nuevo_ingrediente)\r\n",
+        "      print(list_of)\r\n",
+        "    if ingrediente==\"3\":\r\n",
+        "      nuevo_ingrediente=input(\"ingresa el nuevo ingrediente\")\r\n",
+        "      list_ofnames.append(nuevo_ingrediente)\r\n",
+        "      print(list_ofnames)\r\n",
+        "    print(list_of_names +list_of+list_ofnames)\r\n",
+        "    agregar=input(\"Quieres Ingresar nuevos ingredientes? \\n 1-Si \\n 2-No\") \r\n",
+        "\r\n",
+        " \r\n",
+        "\r\n",
+        "  \r\n",
+        "  \r\n",
+        "\r\n",
+        "  "
+      ],
+      "execution_count": 697,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "[]\n",
+            "Quieres Ingresar nuevos ingredientes? \n",
+            " 1-Si \n",
+            " 2-No1\n",
+            "Que tipo de ingrediente vas a ingresar? \n",
+            " 1-Carbohidratos \n",
+            " 2-proteina \n",
+            " 3-vegetales1\n",
+            "ingresa el nuevo ingredientearroz\n",
+            "['arroz']\n",
+            "['arroz']\n",
+            "Quieres Ingresar nuevos ingredientes? \n",
+            " 1-Si \n",
+            " 2-No1\n",
+            "Quieres Ingresar nuevos ingredientes? \n",
+            " 1-Si \n",
+            " 2-No1\n",
+            "Que tipo de ingrediente vas a ingresar? \n",
+            " 1-Carbohidratos \n",
+            " 2-proteina \n",
+            " 3-vegetales1\n",
+            "ingresa el nuevo ingredientepasta\n",
+            "['arroz', 'pasta']\n",
+            "['arroz', 'pasta']\n",
+            "Quieres Ingresar nuevos ingredientes? \n",
+            " 1-Si \n",
+            " 2-No1\n",
+            "Quieres Ingresar nuevos ingredientes? \n",
+            " 1-Si \n",
+            " 2-No1\n",
+            "Que tipo de ingrediente vas a ingresar? \n",
+            " 1-Carbohidratos \n",
+            " 2-proteina \n",
+            " 3-vegetales2\n",
+            "ingresa el nuevo ingredientecarne de cerdo\n",
+            "['carne de cerdo']\n",
+            "['arroz', 'pasta', 'carne de cerdo']\n",
+            "Quieres Ingresar nuevos ingredientes? \n",
+            " 1-Si \n",
+            " 2-No1\n",
+            "Quieres Ingresar nuevos ingredientes? \n",
+            " 1-Si \n",
+            " 2-No1\n",
+            "Que tipo de ingrediente vas a ingresar? \n",
+            " 1-Carbohidratos \n",
+            " 2-proteina \n",
+            " 3-vegetales3\n",
+            "ingresa el nuevo ingredientelechuga\n",
+            "['lechuga']\n",
+            "['arroz', 'pasta', 'carne de cerdo', 'lechuga']\n",
+            "Quieres Ingresar nuevos ingredientes? \n",
+            " 1-Si \n",
+            " 2-No2\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "2A0h3q6dQo9h"
+      },
+      "source": [
+        "\r\n",
+        "if not list_of_names:\r\n",
+        "  while agregar ==\"si\":\r\n",
+        "    agregar=(input(\"Quieres Ingresar nuevos ingredientes? \\n 1-Si \\n 2-No\"))\r\n",
+        "    if agregar.lower() ==\"si\":\r\n",
+        "      ingrediente=input(\"Que tipo de ingrediente vas a ingresar? \\n 1-Carbohidratos \\n 2-proteina \\n 3-vegetales\")\r\n",
+        "      if ingrediente==\"1\":\r\n",
+        "        nuevo_ingrediente=input(\"ingresa el nuevo ingrediente\")\r\n",
+        "        list_of_names.append(nuevo_ingrediente)\r\n",
+        "        if ingrediente==\"2\":\r\n",
+        "          nuevo_ingrediente=input(\"ingresa el nuevo ingrediente\")\r\n",
+        "          list_of.append(nuevo_ingrediente)\r\n",
+        "          if ingrediente==\"3\":\r\n",
+        "            nuevo_ingrediente=input(\"ingresa el nuevo ingrediente\")\r\n",
+        "            list_ofnames.append(nuevo_ingrediente)\r\n",
+        "            break\r\n",
+        "        print(list_of_names)\r\n",
+        "        #print(\"Carbohidratos\"+list_of_names +\"\\n\"+\"Proteinas\"+list_of+\"\\n\"+\"Vegetales\"+list_ofnames)\r\n",
+        "         \r\n",
+        "else:\r\n",
+        "  print(\"Gracias\")\r\n",
+        "\r\n"
+      ],
+      "execution_count": 562,
+      "outputs": []
+    }
+  ]
+}
